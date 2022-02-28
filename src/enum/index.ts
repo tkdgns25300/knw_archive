@@ -1,0 +1,74 @@
+// category 엔티티에서 사용
+enum CategoryEntityList {
+  CONTACT = "contact",
+  QNA = "qna",
+}
+
+enum POST_CATEGORY {
+  NOTICE = "NOTICE",
+  EVENT = "EVENT",
+  DILLY_INSTRUCTIONS = "DILLY_INSTRUCTIONS",
+  DILLY_ROAD = "DILLY_ROAD",
+  DILLY_MAGAZINE = "DILLY_MAGAZINE",
+  DILLY_VIDEO = "DILLY_VIDEO",
+  DILLY_INTERVIEW = "DILLY_INTERVIEW"
+}
+
+// footer_sns 엔티티에서 사용
+enum SNS_TYPE {
+  NAVER = "naver",
+  INSTARGRAM = "instagram",
+  FACEBOOK = "facebook",
+  TWITTER = "twitter",
+  YOUTUBE = "youtube",
+  KAKAO = "kakao",
+  TIKTOK = "tiktok",
+}
+
+enum STORE_STATUS {
+  ACTIVE ="ACTIVE",
+  INACTIVE = "INACTIVE",
+  PENDING = "PENDING"
+}
+
+enum OFFER_TYPE {
+  RENTAL = "RENTAL",
+  SELL = "SELL"
+}
+
+enum STORE_CATEGORY {
+  KOREAN_FOOD = "KOREAN_FOOD",
+  CHINESE_FOOD = "CHINESE_FOOD",
+  JAPANESE_FOOD = "JAPANESE_FOOD",
+  WESTERN_FOOD = "WESTERN_FOOD",
+  CHICKEN = "CHICKEN",
+  PIZZA = "PIZZA",
+  ASIAN = "ASIAN",
+  BOSSAM = "BOSSAM",
+  FAST_FOOD = "FAST_FOOD",
+  CAFE_DESERT = "CAFE_DESERT",
+  SNACK_BAR = "SNACK_BAR",
+  BAR = "BAR",
+  OTHER = "OTHER"
+}
+
+enum FAQ_CATEGORY {
+  PRODUCT= "PRODUCT",
+  SERVICE = "SERVICE",
+  RENTAL_SELL = "RENTAL_SELL",
+  CARE = "CARE",
+  OTHER = "OTHER"
+}
+
+enum CONTACT_TYPE {
+  RENTAL ="RENTAL",
+  BUY = "BUY",
+  OFFER = "OFFER"
+}
+
+enum CONTACT_STATUS {
+  DONE = "DONE",
+  PENDING = "PENDING"
+}
+
+export {CategoryEntityList, SNS_TYPE, STORE_STATUS, OFFER_TYPE, STORE_CATEGORY, POST_CATEGORY, FAQ_CATEGORY, CONTACT_STATUS, CONTACT_TYPE};
