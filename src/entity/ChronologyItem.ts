@@ -2,8 +2,8 @@ import {Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, JoinColumn, Ma
 import { BaseEntity } from "./BaseEntity";
 import {Author} from "./Author";
 
-@Entity("work_item")
-export class WorkItem extends BaseEntity {
+@Entity("chronology_item")
+export class ChronologyItem extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   id: number;

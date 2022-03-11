@@ -21,7 +21,6 @@ export class checkEntityExist {
                 .into(Admin)
                 .values({
                     admin_id: 'flex',
-                    name: 'test',
                     password: hashedPassword,
                     created_at: new Date()
                 })
