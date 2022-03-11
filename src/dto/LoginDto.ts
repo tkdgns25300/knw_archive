@@ -1,4 +1,4 @@
-import {IsBoolean, IsJWT, IsString, MaxLength} from "class-validator";
+import {IsBoolean, IsString, MaxLength} from "class-validator";
 import {hash} from "../util/hash";
 
 export class LoginDto {
@@ -19,9 +19,4 @@ export class LoginDto {
             remember: this.remember
         };
     }
-}
-
-export class SuccessLoginRes {
-    @IsJWT()
-    token: string;
 }

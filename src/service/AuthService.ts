@@ -21,7 +21,7 @@ export class AuthService {
     if (result.password !== loginDto.password) {
       return new PageResObj({}, "비밀번호가 일치하지 않습니다.", true);
     }
-    const token = generateAccessToken(result.admin_id, result.is_super, loginDto.remember);
+    const token = generateAccessToken(result.admin_id, loginDto.remember);
     return new PageResObj(
       {
         token,
@@ -30,8 +30,8 @@ export class AuthService {
     );
   }
 
-  async refreshToken(admin_id: string, is_super: boolean) {
-    const token = generateAccessToken(admin_id, is_super, false);
+  async refreshToken(admin_id: string) {
+    const token = generateAccessToken(admin_id,  false);
     return new PageResObj(
         {
           token,

@@ -41,8 +41,8 @@ export class AuthController {
     @UseBefore(checkAccessToken)
     public async refreshToken(@Res() res: Response, @Res() req: Request) {
         try {
-            const {aud, is_super} = res.locals.jwtPayload;
-            return await this.authService.refreshToken(aud, is_super);
+            const {aud} = res.locals.jwtPayload;
+            return await this.authService.refreshToken(aud);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);

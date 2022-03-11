@@ -8,8 +8,8 @@ require("dotenv").config();
  */
 export const extractAccessToken = (req: Request) => {
   if (
-    req.headers.authorization &&
-    req.headers.authorization.split(" ")[0] === "Bearer"
+      req.headers.authorization &&
+      req.headers.authorization.split(" ")[0] === "Bearer"
   ) {
     return req.headers.authorization.split(" ")[1];
   }
@@ -22,9 +22,9 @@ export const extractAccessToken = (req: Request) => {
  * @param next
  */
 export const checkAccessToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
 ) => {
   const token = extractAccessToken(req);
   let jwtPayload;
@@ -39,42 +39,16 @@ export const checkAccessToken = (
 };
 
 /**
- * JWT AccessToken을 체크한다.
- * @param req
- * @param res
- * @param next
- */
-export const checkSuperAccessToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const token = extractAccessToken(req);
-  try {
-    const jwtPayload = jwt.verify(token, process.env.JWT_TOKEN_KEY);
-    if (!jwtPayload.is_super) {
-      throw new Error();
-    }
-  } catch (error) {
-    return res.status(401).send({ message: "슈퍼 관리자가 아닙니다." });
-  }
-
-  next();
-};
-
-/**
  * JWT AccessToken을 만든다.
  * @param admin_id
- * @param is_super
  * @param remember
  */
-export const generateAccessToken = (admin_id: string, is_super: boolean, remember: boolean) => {
+export const generateAccessToken = (admin_id: string, remember: boolean) => {
   return jwt.sign(
-    {
-      aud: admin_id, // 이 토큰을 사용할 수신자
-      is_super: is_super,
-    },
-    process.env.JWT_TOKEN_KEY,
+      {
+        aud: admin_id // 이 토큰을 사용할 수신자
+      },
+      process.env.JWT_TOKEN_KEY,
       { expiresIn: remember? '7d':'24h' }
   );
 };
