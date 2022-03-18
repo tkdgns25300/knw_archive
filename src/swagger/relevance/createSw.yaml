@@ -1,0 +1,57 @@
+tags:
+  - name: Relevance
+    description: 작가 API
+
+paths:
+  /relevance:
+    post:
+      tags:
+        - Relevance
+      summary: Create relevance
+      consumes:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                is_visible:
+                  type: boolean
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: relevance을 생성에 성공했습니다.
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      name:
+                        type: string
+                      is_visible:
+                        type: boolean
+                      create_at:
+                        type: string
+                        format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

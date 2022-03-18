@@ -1,0 +1,81 @@
+
+paths:
+  /activity/{id}:
+    patch:
+      tags:
+        - ActivityScope
+      summary: Update activityScope
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: activityScope id
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media:
+                  type: number
+                relevance:
+                  type: number
+                author_id:
+                  type: number
+                start_year:
+                  type: string
+                end_year:
+                  type: string
+                updated_at:
+                  type: string
+                  format: date
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: activityScope 수정에 성공했습니다.
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      media:
+                        type: number
+                      relevance:
+                        type: number
+                      author_id:
+                        type: number
+                      start_year:
+                        type: string
+                      end_year:
+                        type: string
+                      updated_at:
+                        type: string
+                        format: date
+                      created_at:
+                        type: string
+                        format: date
+
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

@@ -1,0 +1,41 @@
+
+paths:
+  /author/{id}:
+    delete:
+      tags:
+        - Author
+      summary: Delete author
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: author id
+          schema:
+            type: number
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: author 삭제에 성공했습니다.
+                  item:
+                    type: object
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

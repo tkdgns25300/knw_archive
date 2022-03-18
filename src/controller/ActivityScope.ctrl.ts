@@ -15,7 +15,7 @@ import {logger} from "../util/logger";
 import {ActivityScopeDto} from "../dto";
 
 @Service()
-@JsonController("/activityScope")
+@JsonController("/activity")
 export class ActivityScopeController {
     @Inject()
     activityScopeService: ActivityScopeService;

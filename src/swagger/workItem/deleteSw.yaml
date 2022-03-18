@@ -1,0 +1,41 @@
+
+paths:
+  /work/{id}:
+    delete:
+      tags:
+        - Work
+      summary: Delete workItem
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: workItem id
+          schema:
+            type: number
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: workItem 삭제에 성공했습니다.
+                  item:
+                    type: object
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

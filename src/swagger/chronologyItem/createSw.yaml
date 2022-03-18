@@ -1,0 +1,73 @@
+tags:
+  - name: Chronology
+    description: 작가 API
+
+paths:
+  /chronology:
+    post:
+      tags:
+        - Chronology
+      summary: Create chronology
+      consumes:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                author_id:
+                  type: number
+                ref_text:
+                  type: string
+                ref_content:
+                  type: string
+                href:
+                  type: string
+                img_bas64:
+                  type: string
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: chronology을 생성에 성공했습니다.
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      author_id:
+                        type: number
+                      ref_text:
+                        type: string
+                      ref_content:
+                        type: string
+                      href:
+                        type: string
+                      img_src:
+                        type: string
+                      updated_at:
+                        type: string
+                        format: date
+                      created_at:
+                        type: string
+                        format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

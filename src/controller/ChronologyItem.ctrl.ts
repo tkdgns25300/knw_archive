@@ -15,7 +15,7 @@ import {logger} from "../util/logger";
 import {ChronologyItemDto} from "../dto";
 
 @Service()
-@JsonController("/banner")
+@JsonController("/chronology")
 export class ChronologyItemController {
     @Inject()
     chronologyItemService: ChronologyItemService;

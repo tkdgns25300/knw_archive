@@ -1,0 +1,64 @@
+
+paths:
+  /work/{id}:
+    get:
+      tags:
+        - Work
+      summary: Find One workItem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: workItem id
+          schema:
+            type: number
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: workItem을 찾는데 성공했습니다.
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      title:
+                        type: string
+                      publish_date:
+                        type: string
+                        format: date
+                      publish_media:
+                        type: string
+                      ref_content:
+                        type: string
+                      href:
+                        type: string
+                      img_src:
+                        type: string
+                      genre:
+                        type: string
+                      updated_at:
+                        type: string
+                        format: date
+                      create_at:
+                        type: string
+                        format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

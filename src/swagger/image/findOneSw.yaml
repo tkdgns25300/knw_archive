@@ -1,0 +1,33 @@
+tags:
+  - name: Image
+    description: 이미지 API
+
+paths:
+  /image/{file}:
+    get:
+      tags:
+        - Image
+      summary: get image file
+      parameters:
+        - name: file
+          in: path
+          required: true
+          description: image file name
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http
