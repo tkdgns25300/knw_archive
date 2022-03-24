@@ -27,7 +27,7 @@ export class WorkItem extends BaseEntity {
 
   @Column({type: "varchar", length: 10, comment: "장르"})
   genre: string;
-
+//TODO: image reference
   @CreateDateColumn()
   updated_at: Date;
 

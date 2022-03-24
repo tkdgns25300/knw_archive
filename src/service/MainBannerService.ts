@@ -74,6 +74,19 @@ export class MainBannerService {
   }
 
   @Transaction()
+  async updateOrder(
+      paramObj: MainBannerDto[],
+      @TransactionManager() manager: EntityManager
+  ) {
+
+    for(const el of paramObj) {
+      await manager.update(MainBannerDto,  el.id, el)
+    }
+
+    return new PageResObj({}, "MainBanner 순서 변경에 성공했습니다.");
+  }
+
+  @Transaction()
   async delete(
        id: number ,
       @TransactionManager() manager: EntityManager

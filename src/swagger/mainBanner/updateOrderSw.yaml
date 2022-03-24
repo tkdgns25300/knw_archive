@@ -1,0 +1,43 @@
+paths:
+  /banner/order:
+    patch:
+      tags:
+        - Banner
+      summary: Change order of banners
+      consumes:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                properties:
+                  id:
+                    type: integer
+                  order:
+                    type: integer
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: Banner 순서 변경에 성공했습니다.
+                  item:
+                    type: object
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

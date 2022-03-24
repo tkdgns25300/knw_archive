@@ -66,6 +66,23 @@ export class MainBannerController {
         }
     }
 
+    @Patch("/order")
+    //  @UseBefore(checkAccessToken)
+    public async updateOrder(
+        @Body() updateDto: MainBannerDto[],
+        @Res() res: Response
+    ) {
+        try {
+            return await this.mainBannerService.updateOrder(updateDto, null);
+        } catch (err) {
+            if (err instanceof QueryFailedError) {
+                logger.error(`Instance of QueryFailedError! Detail: ${err}`);
+                return new PageResObj({}, err.message, true);
+            }
+            return new PageResObj({}, err.message, true);
+        }
+    }
+
     @Delete("/:id")
     //@UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
