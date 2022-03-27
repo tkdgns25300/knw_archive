@@ -1,0 +1,52 @@
+
+paths:
+  /growth/{id}:
+    get:
+      tags:
+        - Growth
+      summary: Find One growth
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: growth id
+          schema:
+            type: number
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: growth을 찾는데 성공했습니다.
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      title:
+                        type: string
+                      content:
+                        type: string
+                      is_visible:
+                        type: boolean
+                      create_at:
+                        type: string
+                        format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http
