@@ -64,6 +64,8 @@ export class ChronologyItemService {
     }
     delete paramObj.img_base64
 
+    paramObj.updated_at = new Date();
+
     await this.chronologyItemQueryRepo.update( paramObj,
       "id",
       id

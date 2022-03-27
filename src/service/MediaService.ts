@@ -48,10 +48,6 @@ export class MediaService {
     paramObj: MediaDto,
     id: number
   ): Promise<PageResObj<Media | {}>> {
-    const candidate: Media = await this.mediaQueryRepo.findOne(
-      "id",
-      id
-    );
 
     await this.mediaQueryRepo.update( paramObj,
       "id",

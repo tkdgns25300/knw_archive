@@ -64,6 +64,8 @@ export class WorkItemService {
     }
     delete paramObj.img_base64
 
+    paramObj.updated_at = new Date();
+
     await this.workItemQueryRepo.update( paramObj,
       "id",
       id

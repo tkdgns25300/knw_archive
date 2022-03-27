@@ -22,7 +22,10 @@ paths:
               properties:
                 title:
                   type: string
-                publish_date:
+                published_from:
+                  type: string
+                  format: date
+                published_to:
                   type: string
                   format: date
                 publish_media:
@@ -60,7 +63,10 @@ paths:
                         type: number
                       title:
                         type: string
-                      publish_date:
+                      published_from:
+                        type: string
+                        format: date
+                      published_to:
                         type: string
                         format: date
                       publish_media:

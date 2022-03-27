@@ -11,7 +11,10 @@ export class WorkItem extends BaseEntity {
   title: string;
 
   @CreateDateColumn()
-  publish_date: Date;
+  published_from: Date;
+
+  @CreateDateColumn({nullable: true, default: null})
+  published_to: Date;
 
   @Column({type: "varchar", length: 10, comment: "발표지면"})
   publish_media: string;

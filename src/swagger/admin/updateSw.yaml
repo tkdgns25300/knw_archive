@@ -26,8 +26,6 @@ paths:
                   type: string
                 name:
                   type: string
-                is_super:
-                  type: boolean
       responses:
         200:
           description: "OK"
@@ -51,13 +49,6 @@ paths:
                         type: string
                       password:
                         type: string
-                      name:
-                        type: string
-                      is_super:
-                        type: boolean
-                      last_login:
-                        type: string
-                        format: date
                       create_at:
                         type: string
                         format: date

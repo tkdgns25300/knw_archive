@@ -49,6 +49,8 @@ export class ActivityScopeService {
     id: number
   ): Promise<PageResObj<ActivityScope | {}>> {
 
+    paramObj.updated_at = new Date();
+
     await this.activityScopeQueryRepo.update( paramObj,
       "id",
       id

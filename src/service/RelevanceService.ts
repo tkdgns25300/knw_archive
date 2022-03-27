@@ -48,10 +48,6 @@ export class RelevanceService {
     paramObj: RelevanceDto,
     id: number
   ): Promise<PageResObj<Relevance | {}>> {
-    const candidate: Relevance = await this.relevanceQueryRepo.findOne(
-      "id",
-      id
-    );
 
     await this.relevanceQueryRepo.update( paramObj,
       "id",

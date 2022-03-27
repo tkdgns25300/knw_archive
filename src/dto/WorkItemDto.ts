@@ -17,7 +17,12 @@ export class WorkItemDto {
   @IsOptional()
   @IsDate()
   @Type(() => Date)
-  publish_date: Date;
+  published_from: Date;
+
+  @IsOptional()
+  @IsDate()
+  @Type(() => Date)
+  published_to: Date;
 
   @IsOptional()
   @IsString({ message: "문자열이 아닙니다." })

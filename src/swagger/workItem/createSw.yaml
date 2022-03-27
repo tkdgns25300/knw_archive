@@ -18,15 +18,22 @@ paths:
               properties:
                 title:
                   type: string
-                publish_date:
+                  description: 자료 출처 텍스트
+                published_from:
+                  type: string
+                  format: date
+                published_to:
                   type: string
                   format: date
                 publish_media:
                   type: string
+                  description: 발표지면
                 ref_content:
                   type: string
+                  description: 증거 자료 본문 내용
                 href:
                   type: string
+                  description: 상세 정보 버튼을 눌렀을 때 사용될 외부 사이트 연결 링크
                 img_base64:
                   type: string
                 genre:
@@ -55,17 +62,25 @@ paths:
                         type: number
                       title:
                         type: string
-                      publish_date:
+                        description: 자료 출처 텍스트
+                      published_from:
+                        type: string
+                        format: date
+                      published_to:
                         type: string
                         format: date
                       publish_media:
                         type: string
+                        description: 발표지면
                       ref_content:
                         type: string
+                        description: 증거 자료 본문 내용
                       href:
                         type: string
+                        description: 상세 정보 버튼을 눌렀을 때 사용될 외부 사이트 연결 링크
                       img_src:
                         type: string
+                        description: 첨부된 이미지가 있는 경우 해당 이미지의 주소
                       genre:
                         type: string
                       updated_at:

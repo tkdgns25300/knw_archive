@@ -61,6 +61,9 @@ export class MainBannerService {
       await removeImage(candidate.img_src);
     }
     delete paramObj.img_base64
+
+    paramObj.updated_at = new Date();
+
     await this.mainBannerQueryRepo.update( paramObj,
       "id",
       id
