@@ -1,12 +1,12 @@
 tags:
-  - name: Image
-    description: 이미지 API
+  - name: File
+    description: 업로드 된 파일 읽어오는 API
 
 paths:
   /image/{file}:
     get:
       tags:
-        - Image
+        - File
       summary: get image file
       parameters:
         - name: file

@@ -1,0 +1,33 @@
+tags:
+  - name: File
+    description: 업로드 된 파일 읽어오는 API
+
+paths:
+  /file/{file}:
+    get:
+      tags:
+        - File
+      summary: get file
+      parameters:
+        - name: file
+          in: path
+          required: true
+          description: csv file name
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/csv:
+              schema:
+                type: string
+                format: binary
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

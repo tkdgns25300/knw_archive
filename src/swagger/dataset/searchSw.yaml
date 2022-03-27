@@ -1,0 +1,79 @@
+paths:
+  /dataset:
+    get:
+      tags:
+        - Dataset
+      summary: Find All dataset
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: rowPerPage
+          schema:
+            type: integer
+
+        - name: pageNo
+          in: query
+          required: false
+          description: pageNumber
+          schema:
+            type: integer
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  totalCount:
+                    type: integer
+                    description: 전체 productItems의 갯수
+                    example: 10
+                  totalPage:
+                    type: integer
+                    description: limit, pageNo 를 0으로 보낼 시 null
+                    example: 1
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: productItems 목록을 찾는데 성공했습니다.
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: number
+                        title:
+                          type: string
+                        description:
+                          type: string
+                          description: 부가 설명
+                        organization:
+                          type: string
+                          description: 기관
+                        service:
+                          type: string
+                          description: 서비스 유형
+                        file_src:
+                          type: string
+                        is_visible:
+                          type: boolean
+                        updated_at:
+                          type: string
+                          format: date
+                        create_at:
+                          type: string
+                          format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

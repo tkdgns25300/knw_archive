@@ -13,16 +13,30 @@ import { PageResObj} from "../api";
 
 
 @Service()
-@JsonController("/image")
+@JsonController("/read")
 export class ImageController {
 
-    @Get("/:file")
-    public async getSearch(
+    @Get("/image/:file")
+    public async getImage(
         @Param("file") file: string,
         @Res() res: Response
     ) {
         try {
-            let filePath = path.join(__dirname, '../../uploads', file);
+            let filePath = path.join(__dirname, '../../uploads/images', file);
+            await promisify<string, void>(res.sendFile.bind(res))(filePath)
+            return res
+        } catch (err) {
+            return new PageResObj({}, err.message, true);
+        }
+    }
+
+    @Get("/file/:file")
+    public async getFile(
+        @Param("file") file: string,
+        @Res() res: Response
+    ) {
+        try {
+            let filePath = path.join(__dirname, '../../uploads/files', file);
             await promisify<string, void>(res.sendFile.bind(res))(filePath)
             return res
         } catch (err) {

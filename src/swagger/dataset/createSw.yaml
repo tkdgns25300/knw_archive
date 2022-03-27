@@ -1,0 +1,79 @@
+tags:
+  - name: Dataset
+    description: 작가 API
+
+paths:
+  /dataset:
+    post:
+      tags:
+        - Dataset
+      summary: Create dataset
+      consumes:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                organization:
+                  type: string
+                service:
+                  type: string
+                file_base64:
+                  type: string
+                is_visible:
+                  type: boolean
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: dataset을 생성에 성공했습니다.
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      title:
+                        type: string
+                      description:
+                        type: string
+                        description: 부가 설명
+                      organization:
+                        type: string
+                        description: 기관
+                      service:
+                        type: string
+                        description: 서비스 유형
+                      file_src:
+                        type: string
+                      is_visible:
+                        type: boolean
+                      updated_at:
+                        type: string
+                        format: date
+                      create_at:
+                        type: string
+                        format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http
