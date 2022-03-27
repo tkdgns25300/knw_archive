@@ -2,9 +2,9 @@ import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
 import { ActivityScopeQueryRepo } from "../repository/ActivityScopeQueryRepo";
-import { ActivityScope } from "../entity";
+import {ActivityScope} from "../entity";
 import { ActivityScopeDto } from "../dto";
-import {PageReq, PageResList, PageResObj} from "../api";
+import {ActivitySearchReq, PageReq, PageResList, PageResObj} from "../api";
 
 @Service()
 export class ActivityScopeService {
@@ -12,6 +12,20 @@ export class ActivityScopeService {
     @InjectRepository()
     readonly activityScopeQueryRepo: ActivityScopeQueryRepo
   ) {}
+
+
+  async search(param: ActivitySearchReq): Promise<PageResList<ActivityScope>> {
+    const result = await this.activityScopeQueryRepo.search(param);
+    return new PageResList<ActivityScope>(
+        result[1],
+        param.limit,
+        result[0].map((el: ActivityScope) => {
+          return el;
+        }),
+        "ActivityScope 목록을 찾는데 성공했습니다"
+    );
+  }
+
 
   async findAll(param: PageReq): Promise<PageResList<ActivityScope>> {
     const result = await this.activityScopeQueryRepo.findAll(param);

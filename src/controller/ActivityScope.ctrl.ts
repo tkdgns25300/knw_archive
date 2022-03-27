@@ -7,7 +7,7 @@ import {
 import { Response} from "express";
 import {Inject, Service} from "typedi";
 import {ActivityScopeService} from "../service/ActivityScopeService";
-import {PageReq, PageResObj} from "../api";
+import {ActivitySearchReq, PageReq, PageResObj} from "../api";
 
 import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
@@ -19,6 +19,24 @@ import {ActivityScopeDto} from "../dto";
 export class ActivityScopeController {
     @Inject()
     activityScopeService: ActivityScopeService;
+
+
+    @Get("/search")
+  //  @UseBefore(checkAccessToken)
+    public async getSearch(
+        @QueryParams() param: ActivitySearchReq,
+        @Res() res: Response
+    ) {
+        try {
+            return await this.activityScopeService.search(param);
+        } catch (err) {
+            if (err instanceof QueryFailedError) {
+                logger.error(`Instance of QueryFailedError! Detail: ${err}`);
+                return new PageResObj({}, err.message, true);
+            }
+            return new PageResObj({}, err.message, true);
+        }
+    }
 
     @Post()
    // @UseBefore(checkAccessToken)

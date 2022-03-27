@@ -1,9 +1,9 @@
 paths:
-  /activity:
+  /activity/search:
     get:
       tags:
         - ActivityScope
-      summary: Find All activityScopes
+      summary: Find by keyword
       parameters:
         - name: limit
           in: query
@@ -18,6 +18,30 @@ paths:
           description: pageNumber
           schema:
             type: integer
+
+        - name: author_id
+          in: query
+          required: false
+          description: 인물 (작가 아이디)
+          schema:
+            type: array
+            items:
+              type: number
+
+        - name: media
+          in: query
+          required: false
+          description: 매체 아이디
+          schema:
+            type: string
+
+        - name: relevance
+          in: query
+          required: false
+          description: 관련성 아이디
+          schema:
+            type: string
+
 
       responses:
         200:

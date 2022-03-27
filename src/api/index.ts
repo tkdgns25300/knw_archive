@@ -1,3 +1,4 @@
+import {ActivitySearchReq} from "./request/ActivitySearchReq";
 import { AdminSearchReq } from "./request/AdminSearchReq";
 import { PageReq } from "./request/PageReq";
 
@@ -7,6 +8,7 @@ import { PageResObj } from "./response/PageResObj";
 
 
 export {
+  ActivitySearchReq,
   AdminSearchReq,
   PageReq,
 
