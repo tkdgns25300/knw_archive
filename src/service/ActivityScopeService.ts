@@ -27,7 +27,7 @@ export class ActivityScopeService {
   }
 
 
-  async findAll(param: PageReq): Promise<PageResList<ActivityScope>> {
+  async findAll(param: ActivitySearchReq): Promise<PageResList<ActivityScope>> {
     const result = await this.activityScopeQueryRepo.findAll(param);
     return new PageResList<ActivityScope>(
         result[1],

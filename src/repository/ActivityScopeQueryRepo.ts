@@ -1,8 +1,8 @@
 import {createQueryBuilder, EntityRepository} from "typeorm";
-import { Service } from "typedi";
+import {Service} from "typedi";
 
-import { ActivityScope } from "../entity";
-import { BaseQueryRepo } from "./BaseQueryRepo";
+import {ActivityScope} from "../entity";
+import {BaseQueryRepo} from "./BaseQueryRepo";
 import {ActivitySearchReq, PageReq} from "../api";
 
 @Service()
@@ -24,17 +24,25 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
         .getManyAndCount();
   }
 
-  findAll(param: PageReq) {
-    return createQueryBuilder("activity_scope")
-
-        .leftJoinAndSelect("ActivityScope.author_id", "author")
-        // .select("author.name")
-       // .leftJoinAndSelect("ActivityScope.media", "media")
-       // .leftJoinAndSelect("ActivityScope.relevance", "relevance")
-       // .orderBy('ActivityScope.created_at', param.getOrder)
-        .skip(param.getOffset())
-        .take(param.getLimit())
-        .getManyAndCount();
+  async findAll(param: ActivitySearchReq) {
+      return await createQueryBuilder("activity_scope")
+          .leftJoinAndSelect("ActivityScope.author_id", "author")
+          .leftJoinAndSelect("ActivityScope.media", "media")
+          .leftJoinAndSelect("ActivityScope.relevance", "relevance")
+          .select([
+              "ActivityScope.id",
+              "ActivityScope.start_year",
+              "ActivityScope.end_year",
+              "ActivityScope.updated_at",
+              "ActivityScope.created_at",
+              "media.name",
+              "relevance.name",
+              "author.name",
+          ])
+          .orderBy(param.getOrderBy, param.getOrder)
+          .skip(param.getOffset())
+          .take(param.getLimit())
+          .getManyAndCount();
   }
 
 }

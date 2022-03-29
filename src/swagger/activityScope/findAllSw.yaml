@@ -19,6 +19,23 @@ paths:
           schema:
             type: integer
 
+        - name: ord
+          in: query
+          required: false
+          description: order
+          schema:
+            type: string
+            enum: [ASC, DESC]
+
+        - name: orderBy
+          in: query
+          required: false
+          description: order by
+          schema:
+            type: string
+            enum: [ ActivityScope.start_year, author.name ]
+
+
       responses:
         200:
           description: "OK"
@@ -49,11 +66,29 @@ paths:
                       properties:
                         id:
                           type: number
-                        name:
+                        media:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                        relevance:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                        author_id:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                        start_year:
                           type: string
-                        is_visible:
-                          type: boolean
-                        create_at:
+                        end_year:
+                          type: string
+                        updated_at:
+                          type: string
+                          format: date
+                        created_at:
                           type: string
                           format: date
 

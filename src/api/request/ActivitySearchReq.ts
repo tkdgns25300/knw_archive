@@ -10,6 +10,7 @@ export class ActivitySearchReq extends PageReq {
   author_id: string;
   media: string;
   relevance: string;
+  orderBy: string;
 
   get getAuthor() {
     console.log(this.author_id)
@@ -22,6 +23,10 @@ export class ActivitySearchReq extends PageReq {
 
   get getRelevance() {
     return this.relevance ? [this.relevance] : '';
+  }
+
+  get getOrderBy() {
+    return this.orderBy ? this.orderBy : 'author.name';
   }
 
 }

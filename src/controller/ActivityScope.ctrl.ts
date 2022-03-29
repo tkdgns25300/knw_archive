@@ -53,7 +53,7 @@ export class ActivityScopeController {
     }
 
     @Get()
-    public async getAll(@QueryParams() param: PageReq, @Res() res: Response) {
+    public async getAll(@QueryParams() param: ActivitySearchReq, @Res() res: Response) {
 
         try {
             return await this.activityScopeService.findAll(param);
