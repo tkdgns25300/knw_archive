@@ -1,8 +1,9 @@
-import { EntityRepository } from "typeorm";
+import {createQueryBuilder, EntityRepository} from "typeorm";
 import { Service } from "typedi";
 
 import { Relevance } from "../entity";
 import { BaseQueryRepo } from "./BaseQueryRepo";
+import {PageReq} from "../api";
 
 @Service()
 @EntityRepository(Relevance)
@@ -11,4 +12,11 @@ export class RelevanceQueryRepo extends BaseQueryRepo {
     super('relevance', 'Relevance');
   }
 
+  findAll(param: PageReq) {
+    return createQueryBuilder("relevance")
+        .orderBy('Relevance.name', 'ASC')
+        .skip(param.getOffset())
+        .take(param.getLimit())
+        .getManyAndCount();
+  }
 }

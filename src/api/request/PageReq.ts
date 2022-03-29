@@ -10,6 +10,12 @@ export class PageReq {
   @IsOptional()
   @IsInt()
   limit: number = 10; // rowPerPage, pageSize
+  @IsOptional()
+  ord: 'ASC' | 'DESC'
+
+  get getOrder( ) {
+    return this.ord ? this.ord : 'ASC'
+  }
 
   getOffset(): number {
     return (this.pageNo - 1) * this.limit || 0;

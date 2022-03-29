@@ -2,9 +2,9 @@ import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
 import { WorkItemQueryRepo } from "../repository/WorkItemQueryRepo";
-import {WorkItem} from "../entity";
+import {Author, WorkItem} from "../entity";
 import { WorkItemDto } from "../dto";
-import {List, PageResObj} from "../api";
+import {List, PageReq, PageResList, PageResObj} from "../api";
 import {removeImage, uploadImage} from "../util/imgUpload";
 import {EntityManager, Transaction, TransactionManager} from "typeorm";
 
@@ -15,9 +15,11 @@ export class WorkItemService {
     readonly workItemQueryRepo: WorkItemQueryRepo
   ) {}
 
-  async findByAuth(id: number): Promise<List<WorkItem>> {
-    const result = await this.workItemQueryRepo.getByAuth(id);
-    return new List<WorkItem>(
+  async findAll(param: PageReq): Promise<PageResList<WorkItem>> {
+    const result = await this.workItemQueryRepo.findAll(param);
+    return new PageResList<WorkItem>(
+        result[1],
+        param.limit,
         result[0].map((el: WorkItem) => {
           return el;
         }),

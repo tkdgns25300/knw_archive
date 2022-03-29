@@ -1,13 +1,13 @@
 import {
     Body, Delete, Get,
-    JsonController, Param, Patch, Post,
+    JsonController, Param, Patch, Post, QueryParams,
     Res,
     UseBefore,
 } from "routing-controllers";
 import { Response} from "express";
 import {Inject, Service} from "typedi";
 import {WorkItemService} from "../service/WorkItemService";
-import { PageResObj } from "../api";
+import {PageReq, PageResObj} from "../api";
 
 import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
@@ -34,11 +34,11 @@ export class WorkItemController {
         }
     }
 
-    @Get("/author/:id")
-    public async getAll(@Param("id") id: number, @Res() res: Response) {
+    @Get()
+    public async getAll(@QueryParams() param: PageReq, @Res() res: Response) {
 
         try {
-            return await this.workItemService.findByAuth(id);
+            return await this.workItemService.findAll(param);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);

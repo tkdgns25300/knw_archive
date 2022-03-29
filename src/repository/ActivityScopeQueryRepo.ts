@@ -3,7 +3,7 @@ import { Service } from "typedi";
 
 import { ActivityScope } from "../entity";
 import { BaseQueryRepo } from "./BaseQueryRepo";
-import {ActivitySearchReq} from "../api";
+import {ActivitySearchReq, PageReq} from "../api";
 
 @Service()
 @EntityRepository(ActivityScope)
@@ -20,6 +20,19 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
         .andWhere("ActivityScope.relevance IN (:relevance)", {relevance: param.getRelevance})
 
        return result.skip(param.getOffset())
+        .take(param.getLimit())
+        .getManyAndCount();
+  }
+
+  findAll(param: PageReq) {
+    return createQueryBuilder("activity_scope")
+
+        .leftJoinAndSelect("ActivityScope.author_id", "author")
+        // .select("author.name")
+       // .leftJoinAndSelect("ActivityScope.media", "media")
+       // .leftJoinAndSelect("ActivityScope.relevance", "relevance")
+       // .orderBy('ActivityScope.created_at', param.getOrder)
+        .skip(param.getOffset())
         .take(param.getLimit())
         .getManyAndCount();
   }

@@ -3,6 +3,7 @@ import { Service } from "typedi";
 
 import { WorkItem} from "../entity";
 import { BaseQueryRepo } from "./BaseQueryRepo";
+import {PageReq} from "../api";
 
 @Service()
 @EntityRepository(WorkItem)
@@ -11,13 +12,11 @@ export class WorkItemQueryRepo extends BaseQueryRepo {
     super('work_item', 'WorkItem');
   }
 
-  getByAuth(id: number) {
-    return createQueryBuilder()
-        .select("work_item")
-        .from(WorkItem, "work_item")
-        .where(`work_item.author_id = :author_id `, {
-          author_id: id,
-        })
-        .getManyAndCount();
-  }
+    findAll(param: PageReq) {
+        return createQueryBuilder("work_item")
+            .orderBy('WorkItem.published_from', param.getOrder)
+            .skip(param.getOffset())
+            .take(param.getLimit())
+            .getManyAndCount();
+    }
 }

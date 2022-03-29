@@ -1,0 +1,65 @@
+paths:
+  /activity:
+    get:
+      tags:
+        - ActivityScope
+      summary: Find All activitys
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: rowPerPage
+          schema:
+            type: integer
+
+        - name: pageNo
+          in: query
+          required: false
+          description: pageNumber
+          schema:
+            type: integer
+
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: boolean
+                    description: error 체크
+                    example: false
+                  totalCount:
+                    type: integer
+                    description: 전체 productItems의 갯수
+                    example: 10
+                  totalPage:
+                    type: integer
+                    description: limit, pageNo 를 0으로 보낼 시 null
+                    example: 1
+                  msg:
+                    type: string
+                    description: 메시지
+                    example: productItems 목록을 찾는데 성공했습니다.
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                        is_visible:
+                          type: boolean
+                        create_at:
+                          type: string
+                          format: date
+
+        500:
+          description: "Server Error"
+
+schemes:
+  - https
+  - http

@@ -26,7 +26,7 @@ export class ActivityScope extends BaseEntity {
   relevance: number;
 
   @Column({ type: "int", name: "author_id", default: null, nullable: true, comment: "작가 아이디(UI상 드롭다운으로 구현)" })
-  @ManyToOne(() => Author, (author) => author.id, {
+  @ManyToOne(() => Author, (author) => author.name, {
     onDelete: "CASCADE",
   })
   @JoinColumn({ name: "author_id" })
