@@ -51,6 +51,8 @@ paths:
                           type: number
                         name:
                           type: string
+                        hex_color:
+                          type: string
                         is_visible:
                           type: boolean
                         create_at:

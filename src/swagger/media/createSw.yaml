@@ -18,6 +18,8 @@ paths:
               properties:
                 name:
                   type: string
+                hex_color:
+                  type: string
                 is_visible:
                   type: boolean
       responses:
@@ -42,6 +44,8 @@ paths:
                       id:
                         type: number
                       name:
+                        type: string
+                      hex_color:
                         type: string
                       is_visible:
                         type: boolean

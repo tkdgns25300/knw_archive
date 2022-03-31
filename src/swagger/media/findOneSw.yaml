@@ -38,6 +38,8 @@ paths:
                         type: string
                       is_visible:
                         type: boolean
+                      hex_color:
+                        type: string
                       create_at:
                         type: string
                         format: date

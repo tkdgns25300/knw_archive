@@ -15,6 +15,11 @@ export class MediaDto {
   name: string;
 
   @IsOptional()
+  @IsString({ message: "문자열이 아닙니다." })
+  @MaxLength(20, { message: "최대 20자까지 입력됩니다." })
+  hex_color: string;
+
+  @IsOptional()
   @IsBoolean({ message: "boolean타입이 아닙니다." })
   is_visible: boolean;
 

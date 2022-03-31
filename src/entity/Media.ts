@@ -10,6 +10,9 @@ export class Media extends BaseEntity {
   @Column({type: "varchar", length: 10, comment: "매체 이름"})
   name: string;
 
+  @Column({type: "varchar", length: 20, comment: "색갈"})
+  hex_color: string;
+
   @Column({type: "bool",  comment: "가시성"})
   is_visible: boolean;
 
