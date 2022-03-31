@@ -12,11 +12,11 @@ export class RelevanceQueryRepo extends BaseQueryRepo {
     super('relevance', 'Relevance');
   }
 
-  findAll(param: PageReq) {
-    return createQueryBuilder("relevance")
-        .orderBy('Relevance.name', 'ASC')
-        .skip(param.getOffset())
-        .take(param.getLimit())
-        .getManyAndCount();
-  }
+  // findAll(param: PageReq) {
+  //   return createQueryBuilder("relevance")
+  //       .orderBy('Relevance.name', 'ASC')
+  //       .skip(param.getOffset())
+  //       .take(param.getLimit())
+  //       .getManyAndCount();
+  // }
 }

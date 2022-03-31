@@ -3,7 +3,7 @@ tags:
     description: 업로드 된 파일 읽어오는 API
 
 paths:
-  /file/{file}:
+  /read/file/{file}:
     get:
       tags:
         - File

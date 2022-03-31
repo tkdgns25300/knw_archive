@@ -1,7 +1,7 @@
 import {
   IsString,
   MaxLength,
-  IsOptional, IsDate,
+  IsOptional, IsDate, IsBoolean,
 } from "class-validator";
 import {Type} from "class-transformer";
 
@@ -20,8 +20,8 @@ export class WorkItemDto {
   published_from: Date;
 
   @IsOptional()
-  @IsDate()
-  @Type(() => Date)
+  // @IsDate()
+  // @Type(() => Date)
   published_to: Date;
 
   @IsOptional()
@@ -51,6 +51,10 @@ export class WorkItemDto {
   @IsString({ message: "문자열이 아닙니다." })
   @MaxLength(10, { message: "최대 10자까지 입력됩니다." })
   genre: string;
+
+  @IsOptional()
+  @IsBoolean({ message: "boolean타입이 아닙니다." })
+  is_visible: boolean;
 
   @IsOptional()
   @IsDate()

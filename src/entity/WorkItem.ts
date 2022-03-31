@@ -30,6 +30,10 @@ export class WorkItem extends BaseEntity {
 
   @Column({type: "varchar", length: 10, comment: "장르"})
   genre: string;
+
+  @Column({type: "bool",  comment: "가시성"})
+  is_visible: boolean;
+
 //TODO: image reference
   @CreateDateColumn()
   updated_at: Date;

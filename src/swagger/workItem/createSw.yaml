@@ -38,6 +38,8 @@ paths:
                   type: string
                 genre:
                   type: string
+                is_visible:
+                  type: boolean
 
       responses:
         200:
@@ -83,6 +85,8 @@ paths:
                         description: 첨부된 이미지가 있는 경우 해당 이미지의 주소
                       genre:
                         type: string
+                      is_visible:
+                        type: boolean
                       updated_at:
                         type: string
                         format: date

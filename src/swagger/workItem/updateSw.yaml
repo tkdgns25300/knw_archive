@@ -40,6 +40,8 @@ paths:
                   type: string
                 genre:
                   type: string
+                is_visible:
+                  type: boolean
       responses:
         200:
           description: "OK"
@@ -79,6 +81,8 @@ paths:
                         type: string
                       genre:
                         type: string
+                      is_visible:
+                        type: boolean
                       updated_at:
                         type: string
                         format: date
