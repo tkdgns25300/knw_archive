@@ -7,6 +7,7 @@ import {GrowthDto} from "./GrowthDto";
 import {LoginDto} from './LoginDto';
 import {MainBannerDto} from "./MainBannerDto";
 import {MediaDto} from "./MediaDto";
+import {ProofItemDto} from "./ProofItemDto";
 import {RelevanceDto} from "./RelevanceDto";
 import {WorkItemDto} from "./WorkItemDto";
 
@@ -20,6 +21,7 @@ export {
     LoginDto,
     MainBannerDto,
     MediaDto,
+    ProofItemDto,
     RelevanceDto,
     WorkItemDto,
 }

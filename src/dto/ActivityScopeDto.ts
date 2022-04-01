@@ -19,13 +19,9 @@ export class ActivityScopeDto {
 
   @IsOptional()
   @IsString({ message: "문자열이 아닙니다." })
-  @MaxLength(4, { message: "최대 4자까지 입력됩니다." })
-  start_year: string;
+  @MaxLength(15, { message: "최대 15자까지 입력됩니다." })
+  period: string;
 
-  @IsOptional()
-  @IsString({ message: "문자열이 아닙니다." })
-  @MaxLength(4, { message: "최대 4자까지 입력됩니다." })
-  end_year: string;
 
 
   @IsOptional()

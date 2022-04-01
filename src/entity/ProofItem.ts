@@ -1,0 +1,35 @@
+import {Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, JoinColumn, ManyToOne} from "typeorm";
+import { BaseEntity } from "./BaseEntity";
+import {ChronologyItem} from "./ChronologyItem";
+
+@Entity("proof_item")
+export class ProofItem extends BaseEntity {
+
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ type: "int", name: "chronology_id", default: null, nullable: true })
+  @ManyToOne(() => ChronologyItem, (c) => c.id, {
+    onDelete: "CASCADE",
+  })
+  @JoinColumn({ name: "chronology_item" })
+  chronology_id: number;
+
+  @Column({type: "varchar", length: 100, comment: "파일 주소"})
+  file_src: string;
+
+  @Column({type: "varchar", length: 200, comment: "상세정보 링크"})
+  reference: string;
+
+  @Column({type: "text", comment: "본문 내용"})
+  content: string;
+
+  @Column({type: "bool",  comment: "가시성"})
+  is_visible: boolean;
+
+  @CreateDateColumn()
+  updated_at: Date;
+
+  @CreateDateColumn()
+  created_at: Date;
+}

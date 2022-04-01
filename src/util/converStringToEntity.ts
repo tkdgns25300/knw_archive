@@ -1,6 +1,6 @@
 import {
   ActivityScope,
-  Admin, Author, ChronologyItem, Dataset, Growth, MainBanner, Media, Relevance, WorkItem,
+  Admin, Author, ChronologyItem, Dataset, Growth, MainBanner, Media, ProofItem, Relevance, WorkItem,
 } from "../entity";
 
 export const convertStringToEntity = (entityName: string) => {
@@ -13,6 +13,7 @@ export const convertStringToEntity = (entityName: string) => {
     ["Growth"]: Growth,
     ["MainBanner"]: MainBanner,
     ["Media"]: Media,
+    ["ProofItem"]: ProofItem,
     ["Relevance"]: Relevance,
     ["WorkItem"]: WorkItem,
   };

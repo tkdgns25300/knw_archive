@@ -81,9 +81,7 @@ paths:
                           properties:
                             name:
                               type: string
-                        start_year:
-                          type: string
-                        end_year:
+                        period:
                           type: string
                         updated_at:
                           type: string

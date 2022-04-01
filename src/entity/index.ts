@@ -6,6 +6,7 @@ import {Dataset} from "./Dataset";
 import {Growth} from "./Growth";
 import {MainBanner} from "./MainBanner";
 import {Media} from './Media';
+import {ProofItem} from './ProofItem';
 import {Relevance} from './Relevance';
 import {WorkItem} from "./WorkItem";
 
@@ -18,6 +19,7 @@ export {
     Growth,
     MainBanner,
     Media,
+    ProofItem,
     Relevance,
     WorkItem,
 }

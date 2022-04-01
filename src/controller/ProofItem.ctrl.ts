@@ -6,25 +6,25 @@ import {
 } from "routing-controllers";
 import { Response} from "express";
 import {Inject, Service} from "typedi";
-import {ChronologyItemService} from "../service/ChronologyItemService";
+import {ProofItemService} from "../service/ProofItemService";
 import {PageReq, PageResObj} from "../api";
 
 import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
 import {logger} from "../util/logger";
-import {ChronologyItemDto} from "../dto";
+import {ProofItemDto} from "../dto";
 
 @Service()
-@JsonController("/chronology")
-export class ChronologyItemController {
+@JsonController("/proof")
+export class ProofItemController {
     @Inject()
-    chronologyItemService: ChronologyItemService;
+    proofItemService: ProofItemService;
 
     @Post()
    // @UseBefore(checkAccessToken)
-    public async create(@Body({ options: { limit: "20mb" } }) createDto: ChronologyItemDto, @Res() res: Response) {
+    public async create(@Body({ options: { limit: "20mb" } }) createDto: ProofItemDto, @Res() res: Response) {
         try {
-            return await this.chronologyItemService.create(createDto);
+            return await this.proofItemService.create(createDto);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);
@@ -38,7 +38,7 @@ export class ChronologyItemController {
     public async getAll(@QueryParams() param: PageReq, @Res() res: Response) {
 
         try {
-            return await this.chronologyItemService.findAll(param);
+            return await this.proofItemService.findAll(param);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);
@@ -53,7 +53,7 @@ export class ChronologyItemController {
         @Param("id") id: number, @Res() res: Response) {
 
         try {
-            return await this.chronologyItemService.findOne(id);
+            return await this.proofItemService.findOne(id);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);
@@ -66,12 +66,12 @@ export class ChronologyItemController {
     @Patch("/:id")
   //  @UseBefore(checkAccessToken)
     public async update(
-        @Body() updateDto: ChronologyItemDto,
+        @Body() updateDto: ProofItemDto,
         @Param("id") id: number,
         @Res() res: Response
     ) {
         try {
-            return await this.chronologyItemService.update(updateDto, id);
+            return await this.proofItemService.update(updateDto, id);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);
@@ -86,7 +86,7 @@ export class ChronologyItemController {
     public async delete( @Param("id") id: number,) {
 
         try {
-            return await this.chronologyItemService.delete(id, null);
+            return await this.proofItemService.delete(id, null);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);

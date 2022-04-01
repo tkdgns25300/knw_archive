@@ -32,11 +32,8 @@ export class ActivityScope extends BaseEntity {
   @JoinColumn({ name: "author_id" })
   author_id: number;
 
-  @Column({type: "varchar", length: 4, default: null, nullable: true, comment: " "})
-  start_year: string;
-
-  @Column({type: "varchar", length: 4, default: null, nullable: true, comment: " "})
-  end_year: string;
+  @Column({type: "varchar", length: 15, default: null, nullable: true, comment: " "})
+  period: string;
 
   @CreateDateColumn()
   updated_at: Date;

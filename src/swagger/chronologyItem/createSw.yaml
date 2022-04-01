@@ -16,16 +16,16 @@ paths:
             schema:
               type: object
               properties:
-                author_id:
-                  type: number
-                ref_text:
+                age:
                   type: string
-                ref_content:
+                period:
                   type: string
-                href:
+                  description: 연도
+                content:
                   type: string
-                img_bas64:
-                  type: string
+                  description: 내용
+                is_visible:
+                  type: boolean
 
       responses:
         200:
@@ -48,16 +48,18 @@ paths:
                     properties:
                       id:
                         type: number
-                      author_id:
-                        type: number
-                      ref_text:
+                      age:
                         type: string
-                      ref_content:
+                      period:
                         type: string
-                      href:
+                        description: 연도
+                      content:
                         type: string
-                      img_src:
-                        type: string
+                        description: 내용
+                      is_visible:
+                        type: boolean
+                      proof_items:
+                        type: array
                       updated_at:
                         type: string
                         format: date

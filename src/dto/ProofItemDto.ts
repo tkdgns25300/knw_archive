@@ -1,30 +1,34 @@
 import {
   IsString,
   MaxLength,
-  IsOptional, IsDate, IsBoolean,
+  IsOptional, IsDate, IsInt, IsBoolean,
 } from "class-validator";
 import {Type} from "class-transformer";
-import {ProofItem} from "../entity";
 
-export class ChronologyItemDto {
+export class ProofItemDto {
 
   id: number;
 
-  @IsOptional()
-  @IsString({ message: "문자열이 아닙니다." })
-  @MaxLength(10, { message: "최대 10자까지 입력됩니다." })
-  age: string;
+  @IsInt()
+  chronology_id: number;
 
   @IsOptional()
   @IsString({ message: "문자열이 아닙니다." })
-  @MaxLength(10, { message: "최대 10자까지 입력됩니다." })
-  period: string;
+  @MaxLength(100, { message: "최대 100자까지 입력됩니다." })
+  file_src: string;
+
+  @IsOptional()
+  @IsString()
+  file_base64: string|null;
+
+  @IsOptional()
+  @IsString({ message: "문자열이 아닙니다." })
+  @MaxLength(200, { message: "최대 200자까지 입력됩니다." })
+  reference: string;
 
   @IsOptional()
   @IsString({ message: "문자열이 아닙니다." })
   content: string;
-
-  proof_items: ProofItem[];
 
   @IsOptional()
   @IsBoolean()

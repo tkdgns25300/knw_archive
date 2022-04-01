@@ -22,10 +22,9 @@ paths:
                   type: number
                 author_id:
                   type: number
-                start_year:
+                period:
                   type: string
-                end_year:
-                  type: string
+
       responses:
         200:
           description: "OK"
@@ -53,9 +52,7 @@ paths:
                         type: number
                       author_id:
                         type: number
-                      start_year:
-                        type: string
-                      end_year:
+                      period:
                         type: string
                       updated_at:
                         type: string

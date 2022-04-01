@@ -1,17 +1,23 @@
-
 paths:
-  /chronology/author/{id}:
+  /proof:
     get:
       tags:
-        - Chronology
-      summary: Find chronology by author
+        - Proof
+      summary: Find All proofItem
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: author id
+        - name: limit
+          in: query
+          required: false
+          description: rowPerPage
           schema:
-            type: number
+            type: integer
+
+        - name: pageNo
+          in: query
+          required: false
+          description: pageNumber
+          schema:
+            type: integer
 
       responses:
         200:
@@ -25,6 +31,14 @@ paths:
                     type: boolean
                     description: error 체크
                     example: false
+                  totalCount:
+                    type: integer
+                    description: 전체 productItems의 갯수
+                    example: 10
+                  totalPage:
+                    type: integer
+                    description: limit, pageNo 를 0으로 보낼 시 null
+                    example: 1
                   msg:
                     type: string
                     description: 메시지
@@ -35,16 +49,19 @@ paths:
                       properties:
                         id:
                           type: number
-                        author_id:
+                        chronology_id:
                           type: number
-                        ref_text:
+                        file_src:
                           type: string
-                        ref_content:
+                        reference:
                           type: string
-                        href:
+                          description: 상세정보 링크
+                        content:
                           type: string
-                        img_src:
-                          type: string
+                          description: 본문 내용
+                        is_visible:
+                          type: boolean
+                          description: 공개 여부
                         updated_at:
                           type: string
                           format: date

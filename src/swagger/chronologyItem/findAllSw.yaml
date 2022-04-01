@@ -1,9 +1,10 @@
+
 paths:
-  /activity/search:
+  /chronology:
     get:
       tags:
-        - ActivityScope
-      summary: Find by keyword
+        - Chronology
+      summary: Find all chronology
       parameters:
         - name: limit
           in: query
@@ -19,30 +20,6 @@ paths:
           schema:
             type: integer
 
-        - name: author_id
-          in: query
-          required: false
-          description: 인물 (작가 아이디)
-          schema:
-            type: array
-            items:
-              type: number
-
-        - name: media
-          in: query
-          required: false
-          description: 매체 아이디
-          schema:
-            type: string
-
-        - name: relevance
-          in: query
-          required: false
-          description: 관련성 아이디
-          schema:
-            type: string
-
-
       responses:
         200:
           description: "OK"
@@ -55,14 +32,6 @@ paths:
                     type: boolean
                     description: error 체크
                     example: false
-                  totalCount:
-                    type: integer
-                    description: 전체 productItems의 갯수
-                    example: 10
-                  totalPage:
-                    type: integer
-                    description: limit, pageNo 를 0으로 보낼 시 null
-                    example: 1
                   msg:
                     type: string
                     description: 메시지
@@ -73,13 +42,13 @@ paths:
                       properties:
                         id:
                           type: number
-                        media:
-                          type: number
-                        relevance:
-                          type: number
-                        author_id:
-                          type: number
+                        age:
+                          type: string
                         period:
+                          type: string
+                        content:
+                          type: string
+                        is_visible:
                           type: string
                         updated_at:
                           type: string
@@ -87,8 +56,31 @@ paths:
                         created_at:
                           type: string
                           format: date
-
-
+                        proof_items:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: number
+                              chronology_id:
+                                type: number
+                              file_src:
+                                type: string
+                              reference:
+                                type: string
+                                description: 상세정보 링크
+                              content:
+                                type: string
+                                description: 본문 내용
+                              is_visible:
+                                type: boolean
+                                description: 공개 여부
+                              updated_at:
+                                type: string
+                                format: date
+                              created_at:
+                                type: string
+                                format: date
         500:
           description: "Server Error"
 

@@ -3,6 +3,7 @@ import { Service } from "typedi";
 
 import { ChronologyItem} from "../entity";
 import { BaseQueryRepo } from "./BaseQueryRepo";
+import {PageReq} from "../api";
 
 @Service()
 @EntityRepository(ChronologyItem)
@@ -11,14 +12,13 @@ export class ChronologyItemQueryRepo extends BaseQueryRepo {
     super('chronology_item', 'ChronologyItem');
   }
 
-  getByAuth(id: number) {
-    return createQueryBuilder()
-        .select("chronology_item")
-        .from(ChronologyItem, "chronology_item")
-        .where(`chronology_item.author_id = :author_id `, {
-          author_id: id,
-        })
-        .getManyAndCount();
-  }
+    search(param: PageReq) {
+        return createQueryBuilder("chronology_item")
+            .leftJoinAndSelect("ChronologyItem.proof_items", "proof_item")
+            .orderBy('ChronologyItem.period', param.getOrder)
+            .skip(param.getOffset())
+            .take(param.getLimit())
+            .getManyAndCount();
+    }
 
 }

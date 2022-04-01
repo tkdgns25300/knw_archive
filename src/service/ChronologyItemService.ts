@@ -4,9 +4,9 @@ import { InjectRepository } from "typeorm-typedi-extensions";
 import { ChronologyItemQueryRepo } from "../repository/ChronologyItemQueryRepo";
 import {ChronologyItem} from "../entity";
 import { ChronologyItemDto } from "../dto";
-import {List, PageResObj} from "../api";
-import {removeImage, uploadImage} from "../util/imgUpload";
+import {List, PageReq, PageResList, PageResObj} from "../api";
 import {EntityManager, Transaction, TransactionManager} from "typeorm";
+import {removeFile} from "../util/fileUpload";
 
 @Service()
 export class ChronologyItemService {
@@ -15,9 +15,11 @@ export class ChronologyItemService {
     readonly chronologyItemQueryRepo: ChronologyItemQueryRepo
   ) {}
 
-  async findByAuth(id: number): Promise<List<ChronologyItem>> {
-    const result = await this.chronologyItemQueryRepo.getByAuth(id);
-    return new List<ChronologyItem>(
+  async findAll(param: PageReq): Promise<PageResList<ChronologyItem>> {
+    const result = await this.chronologyItemQueryRepo.search(param);
+    return new PageResList<ChronologyItem>(
+        result[1],
+        param.limit,
         result[0].map((el: ChronologyItem) => {
           return el;
         }),
@@ -32,9 +34,6 @@ export class ChronologyItemService {
 
   async create(paramObj: ChronologyItemDto): Promise<PageResObj<ChronologyItem | {}>> {
 
-    if (paramObj.img_base64) {
-      paramObj.img_src = await uploadImage(paramObj.img_base64)
-    }
     paramObj.created_at = new Date()
 
     const createResult = await this.chronologyItemQueryRepo.create(
@@ -51,18 +50,6 @@ export class ChronologyItemService {
     paramObj: ChronologyItemDto,
     id: number
   ): Promise<PageResObj<ChronologyItem | {}>> {
-    const candidate: ChronologyItem = await this.chronologyItemQueryRepo.findOne(
-      "id",
-      id
-    );
-
-    if (paramObj.img_base64) {
-      if (candidate.img_src) await removeImage(candidate.img_src);
-      paramObj.img_src =  await uploadImage(paramObj.img_base64)
-    } else if(paramObj.img_src !== candidate.img_src) {
-      await removeImage(candidate.img_src);
-    }
-    delete paramObj.img_base64
 
     paramObj.updated_at = new Date();
 
@@ -85,8 +72,15 @@ export class ChronologyItemService {
       @TransactionManager() manager: EntityManager
   ) {
 
-    const candidate = await manager.findOne(ChronologyItem, id);
-    if (candidate.img_src) await removeImage(candidate.img_src);
+    //get each element and remove icons from details
+    let result = await this.chronologyItemQueryRepo.findOne('id', id, [{
+      property: 'ChronologyItem.proof_items',
+      alias: 'proof_item'
+    }]);
+    for (const d of result.proof_items) {
+      if (d.file_src) await removeFile(d.file_src);
+    }
+
     await manager.delete(ChronologyItem, id);
 
     return new PageResObj({}, "ChronologyItem 삭제에 성공했습니다.");
