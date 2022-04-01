@@ -24,9 +24,7 @@ paths:
           required: false
           description: 인물 (작가 아이디)
           schema:
-            type: array
-            items:
-              type: number
+            type: string
 
         - name: media
           in: query

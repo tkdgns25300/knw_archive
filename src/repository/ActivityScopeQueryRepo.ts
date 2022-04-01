@@ -12,12 +12,25 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
     super('activity_scope', 'ActivityScope');
   }
 
+
   search(param: ActivitySearchReq) {
     const result =  createQueryBuilder("activity_scope")
-        //.leftJoinAndSelect("ActivityScope.details", "offer_detail")
+        .leftJoinAndSelect("ActivityScope.author_id", "author")
+        .leftJoinAndSelect("ActivityScope.media", "media")
+        .leftJoinAndSelect("ActivityScope.relevance", "relevance")
         .where("ActivityScope.author_id IN (:author_id)", {author_id: param.getAuthor})
         .andWhere("ActivityScope.media IN (:media)", {media: param.getMedia})
         .andWhere("ActivityScope.relevance IN (:relevance)", {relevance: param.getRelevance})
+        .select([
+            "ActivityScope.id",
+            "ActivityScope.period",
+            "ActivityScope.updated_at",
+            "ActivityScope.created_at",
+            "media.name",
+            "media.hex_color",
+            "relevance.name",
+            "author.name",
+        ])
 
        return result.skip(param.getOffset())
         .take(param.getLimit())

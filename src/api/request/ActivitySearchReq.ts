@@ -13,16 +13,15 @@ export class ActivitySearchReq extends PageReq {
   orderBy: string;
 
   get getAuthor() {
-    console.log(this.author_id)
-    return this.author_id ? this.author_id : "IS NOT NULL";
+    return this.author_id ? this.author_id.split("$") : "IS NOT NULL";
   }
 
   get getMedia() {
-    return this.media ? [this.media] : "IS NOT NULL";
+    return this.media ? this.media.split("$") : "IS NOT NULL";
   }
 
   get getRelevance() {
-    return this.relevance ? [this.relevance] : '';
+    return this.relevance ? this.relevance.split("$") : '';
   }
 
   get getOrderBy() {
