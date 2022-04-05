@@ -83,6 +83,8 @@ paths:
                               type: string
                         period:
                           type: string
+                        is_visible:
+                          type: boolean
                         updated_at:
                           type: string
                           format: date

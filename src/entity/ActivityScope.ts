@@ -35,6 +35,9 @@ export class ActivityScope extends BaseEntity {
   @Column({type: "varchar", length: 15, default: null, nullable: true, comment: " "})
   period: string;
 
+  @Column({type: "bool",  comment: "가시성"})
+  is_visible: boolean;
+
   @CreateDateColumn()
   updated_at: Date;
 

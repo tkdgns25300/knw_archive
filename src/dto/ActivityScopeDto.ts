@@ -2,7 +2,7 @@ import {
   IsString,
   MaxLength,
   IsOptional,
-  IsDate,
+  IsDate, IsBoolean,
 } from "class-validator";
 import {Author, Media, Relevance} from "../entity";
 import {Type} from "class-transformer";
@@ -22,6 +22,9 @@ export class ActivityScopeDto {
   @MaxLength(15, { message: "최대 15자까지 입력됩니다." })
   period: string;
 
+  @IsOptional()
+  @IsBoolean({ message: "boolean타입이 아닙니다." })
+  is_visible: boolean;
 
 
   @IsOptional()
