@@ -50,7 +50,14 @@ paths:
                         id:
                           type: number
                         chronology_id:
-                          type: number
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            period:
+                              type: string
+                            content:
+                              type: string
                         file_src:
                           type: string
                         reference:
