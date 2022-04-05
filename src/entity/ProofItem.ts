@@ -8,11 +8,13 @@ export class ProofItem extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "int", name: "chronology_id", default: null, nullable: true })
+ // @Column({ type: "int", name: "chronology_id", default: null, nullable: true })
+  // when this line is commented column does not appear, otherwise column shows but there is another colum too since JoinColumn creates column too
   @ManyToOne(() => ChronologyItem, (c) => c.id, {
     onDelete: "CASCADE",
+    onUpdate: "CASCADE"
   })
-  @JoinColumn({ name: "chronology_item" })
+  @JoinColumn({ name: "chronology_id" })
   chronology_id: number;
 
   @Column({type: "varchar", length: 100, comment: "파일 주소"})

@@ -17,7 +17,8 @@ export class ChronologyItem extends BaseEntity {
   @Column({type: "text", comment: "증거 자료 본문 내용"})
   content: string;
 
-  @OneToMany(() => ProofItem, (detail) => detail.chronology_id)
+  @OneToMany(() => ProofItem, (detail) => detail.chronology_id,
+      {cascade: true})
   proof_items: ProofItem[];
 
   @Column({type: "bool",  comment: "가시성"})
