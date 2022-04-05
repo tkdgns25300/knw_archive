@@ -19,6 +19,28 @@ paths:
           schema:
             type: integer
 
+        - name: column
+          in: query
+          required: false
+          description: filter column
+          schema:
+            type: string
+            enum: [ref_content, title, all]
+
+        - name: keyword
+          in: query
+          required: false
+          description: 검색어
+          schema:
+            type: string
+
+        - name: genre
+          in: query
+          required: false
+          description: 검색어
+          schema:
+            type: string
+
       responses:
         200:
           description: "OK"

@@ -7,7 +7,7 @@ import {
 import { Response} from "express";
 import {Inject, Service} from "typedi";
 import {WorkItemService} from "../service/WorkItemService";
-import {PageReq, PageResObj} from "../api";
+import {PageResObj, WorkItemSearchReq} from "../api";
 
 import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
@@ -35,7 +35,7 @@ export class WorkItemController {
     }
 
     @Get()
-    public async getAll(@QueryParams() param: PageReq, @Res() res: Response) {
+    public async getAll(@QueryParams() param: WorkItemSearchReq, @Res() res: Response) {
 
         try {
             return await this.workItemService.findAll(param);
