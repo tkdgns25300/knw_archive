@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
 import { MainBannerQueryRepo } from "../repository/MainBannerQueryRepo";
-import { MainBanner } from "../entity";
+import { MainBanner} from "../entity";
 import { MainBannerDto } from "../dto";
 import {PageReq, PageResList, PageResObj} from "../api";
 import { EntityManager, Transaction, TransactionManager } from "typeorm";
@@ -25,6 +25,11 @@ export class MainBannerService {
         }),
         "MainBanner 목록을 찾는데 성공했습니다"
     );
+  }
+
+  async findOne(id: number): Promise<PageResObj<MainBanner | {}>>  {
+    const result = await this.mainBannerQueryRepo.findOne("id", id);
+    return new PageResObj(result, "MainBanner 찾는데 성공했습니다.");
   }
 
 

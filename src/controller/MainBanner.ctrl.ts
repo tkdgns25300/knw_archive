@@ -48,6 +48,21 @@ export class MainBannerController {
         }
     }
 
+    @Get("/:id")
+    public async getOne(
+        @Param("id") id: number, @Res() res: Response) {
+
+        try {
+            return await this.mainBannerService.findOne(id);
+        } catch (err) {
+            if (err instanceof QueryFailedError) {
+                logger.error(`Instance of QueryFailedError! Detail: ${err}`);
+                return new PageResObj({}, err.message, true);
+            }
+            return new PageResObj({}, err.message, true);
+        }
+    }
+
     @Patch("/:id")
   //  @UseBefore(checkAccessToken)
     public async update(
