@@ -44,8 +44,7 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
           .leftJoinAndSelect("ActivityScope.relevance", "relevance")
           .select([
               "ActivityScope.id",
-              "ActivityScope.start_year",
-              "ActivityScope.end_year",
+              "ActivityScope.period",
               "ActivityScope.updated_at",
               "ActivityScope.created_at",
               "media.name",

@@ -33,7 +33,7 @@ paths:
           description: order by
           schema:
             type: string
-            enum: [ ActivityScope.start_year, author.name ]
+            enum: [ ActivityScope.period, author.name ]
 
 
       responses:
