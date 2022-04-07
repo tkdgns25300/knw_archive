@@ -88,7 +88,7 @@ export class MainBannerService {
   ) {
 
     for(const el of paramObj) {
-      await manager.update(MainBannerDto,  el.id, el)
+      await manager.update(MainBanner,  el.id, el)
     }
 
     return new PageResObj({}, "MainBanner 순서 변경에 성공했습니다.");

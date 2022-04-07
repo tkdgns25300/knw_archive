@@ -9,7 +9,7 @@ export = {
     database: "archiving_knw",
     synchronize: true,
     connectTimeout: 3000,
-    logging: true,
+    logging: false,
     timezone: "Z",
     entities: ["src/entity/**/*.ts"],
     migrations: ["src/migration/**/*.ts"],
