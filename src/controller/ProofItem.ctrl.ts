@@ -63,6 +63,21 @@ export class ProofItemController {
         }
     }
 
+    @Get("/chron/:id")
+    public async getOneByChronology(
+        @Param("id") id: number, @Res() res: Response) {
+
+        try {
+            return await this.proofItemService.findOneByChronology(id);
+        } catch (err) {
+            if (err instanceof QueryFailedError) {
+                logger.error(`Instance of QueryFailedError! Detail: ${err}`);
+                return new PageResObj({}, err.message, true);
+            }
+            return new PageResObj({}, err.message, true);
+        }
+    }
+
     @Patch("/:id")
   //  @UseBefore(checkAccessToken)
     public async update(

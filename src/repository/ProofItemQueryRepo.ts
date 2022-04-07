@@ -58,4 +58,28 @@ export class ProofItemQueryRepo extends BaseQueryRepo {
         return new entity_().getEntity("ProofItem", result);
     }
 
+    async findOneByChronologyId(
+       id: number
+    ) {
+        const result =  await createQueryBuilder("proof_item")
+            .leftJoinAndSelect("ProofItem.chronology_id", "chronology_item")
+            .where(`ProofItem.chronology_id = :id`, {
+                id: id,
+            })
+            .select([
+                "ProofItem.id",
+                "ProofItem.file_src",
+                "ProofItem.reference",
+                "ProofItem.content",
+                "ProofItem.is_visible",
+                "ProofItem.updated_at",
+                "ProofItem.created_at",
+                "chronology_item.id",
+                "chronology_item.content",
+                "chronology_item.period",
+            ]).getOne();
+        const entity_ = convertStringToEntity("ProofItem");
+        return new entity_().getEntity("ProofItem", result);
+    }
+
 }

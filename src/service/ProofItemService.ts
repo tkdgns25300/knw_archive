@@ -31,6 +31,10 @@ export class ProofItemService {
     const result = await this.proofItemQueryRepo.findOne("id", id);
     return new PageResObj(result, "ProofItem 찾는데 성공했습니다.");
   }
+  async findOneByChronology(id: number): Promise<PageResObj<ProofItem | {}>>  {
+    const result = await this.proofItemQueryRepo.findOneByChronologyId( id);
+    return new PageResObj(result, "ProofItem 찾는데 성공했습니다.");
+  }
 
   async create(paramObj: ProofItemDto): Promise<PageResObj<ProofItem | {}>> {
 
