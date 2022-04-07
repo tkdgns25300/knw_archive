@@ -19,6 +19,14 @@ paths:
           schema:
             type: integer
 
+        - name: ord
+          in: query
+          required: false
+          description: order
+          schema:
+            type: string
+            enum: [ASC, DESC]
+
         - name: column
           in: query
           required: false
