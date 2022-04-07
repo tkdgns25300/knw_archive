@@ -4,7 +4,7 @@ import { InjectRepository } from "typeorm-typedi-extensions";
 import { ProofItemQueryRepo } from "../repository/ProofItemQueryRepo";
 import {ProofItem} from "../entity";
 import { ProofItemDto } from "../dto";
-import {PageReq, PageResList, PageResObj} from "../api";
+import {List, PageReq, PageResList, PageResObj} from "../api";
 import {removeFile, uploadFile} from "../util/fileUpload";
 import {EntityManager, Transaction, TransactionManager} from "typeorm";
 
@@ -31,9 +31,12 @@ export class ProofItemService {
     const result = await this.proofItemQueryRepo.findOne("id", id);
     return new PageResObj(result, "ProofItem 찾는데 성공했습니다.");
   }
-  async findOneByChronology(id: number): Promise<PageResObj<ProofItem | {}>>  {
+  async findByChronology(id: number): Promise<List<ProofItem>>   {
     const result = await this.proofItemQueryRepo.findOneByChronologyId( id);
-    return new PageResObj(result, "ProofItem 찾는데 성공했습니다.");
+    return new List(result[0].map((el: ProofItem) => {
+          return el;
+        }),
+        "ProofItem 찾는데 성공했습니다.");
   }
 
   async create(paramObj: ProofItemDto): Promise<PageResObj<ProofItem | {}>> {

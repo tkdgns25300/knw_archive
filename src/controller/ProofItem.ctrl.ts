@@ -68,7 +68,7 @@ export class ProofItemController {
         @Param("id") id: number, @Res() res: Response) {
 
         try {
-            return await this.proofItemService.findOneByChronology(id);
+            return await this.proofItemService.findByChronology(id);
         } catch (err) {
             if (err instanceof QueryFailedError) {
                 logger.error(`Instance of QueryFailedError! Detail: ${err}`);
