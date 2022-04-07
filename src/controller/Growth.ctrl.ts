@@ -21,7 +21,7 @@ export class GrowthController {
     growthService: GrowthService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: GrowthDto, @Res() res: Response) {
         try {
             return await this.growthService.create(createDto);
@@ -64,7 +64,7 @@ export class GrowthController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: GrowthDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class GrowthController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

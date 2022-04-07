@@ -21,7 +21,7 @@ export class MediaController {
     mediaService: MediaService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: MediaDto, @Res() res: Response) {
         try {
             return await this.mediaService.create(createDto);
@@ -64,7 +64,7 @@ export class MediaController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: MediaDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class MediaController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

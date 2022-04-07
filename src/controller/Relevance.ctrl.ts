@@ -21,7 +21,7 @@ export class RelevanceController {
     relevanceService: RelevanceService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: RelevanceDto, @Res() res: Response) {
         try {
             return await this.relevanceService.create(createDto);
@@ -64,7 +64,7 @@ export class RelevanceController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: RelevanceDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class RelevanceController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

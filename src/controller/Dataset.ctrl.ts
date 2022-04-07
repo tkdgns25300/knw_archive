@@ -21,7 +21,7 @@ export class DatasetController {
     datasetService: DatasetService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: DatasetDto, @Res() res: Response) {
         try {
             return await this.datasetService.create(createDto);
@@ -64,7 +64,7 @@ export class DatasetController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: DatasetDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class DatasetController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

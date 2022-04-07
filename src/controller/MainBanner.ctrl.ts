@@ -21,7 +21,7 @@ export class MainBannerController {
     mainBannerService: MainBannerService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: MainBannerDto, @Res() res: Response) {
         try {
             return await this.mainBannerService.create(createDto);
@@ -63,7 +63,7 @@ export class MainBannerController {
         }
     }
     @Patch("/order")
-    //  @UseBefore(checkAccessToken)
+     @UseBefore(checkAccessToken)
     public async updateOrder(
         @Body() updateDto: MainBannerDto[],
         @Res() res: Response
@@ -80,7 +80,7 @@ export class MainBannerController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: MainBannerDto,
         @Param("id") id: number,
@@ -99,7 +99,7 @@ export class MainBannerController {
 
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

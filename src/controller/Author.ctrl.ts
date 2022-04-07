@@ -21,7 +21,7 @@ export class AuthorController {
     authorService: AuthorService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: AuthorDto, @Res() res: Response) {
         try {
             return await this.authorService.create(createDto);
@@ -64,7 +64,7 @@ export class AuthorController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: AuthorDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class AuthorController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

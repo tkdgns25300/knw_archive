@@ -21,7 +21,7 @@ export class ChronologyItemController {
     chronologyItemService: ChronologyItemService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: ChronologyItemDto, @Res() res: Response) {
         try {
             return await this.chronologyItemService.create(createDto);
@@ -64,7 +64,7 @@ export class ChronologyItemController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: ChronologyItemDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class ChronologyItemController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

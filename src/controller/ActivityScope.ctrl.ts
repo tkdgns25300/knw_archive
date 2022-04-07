@@ -7,7 +7,7 @@ import {
 import { Response} from "express";
 import {Inject, Service} from "typedi";
 import {ActivityScopeService} from "../service/ActivityScopeService";
-import {ActivitySearchReq, PageReq, PageResObj} from "../api";
+import {ActivitySearchReq, PageResObj} from "../api";
 
 import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
@@ -39,7 +39,7 @@ export class ActivityScopeController {
     }
 
     @Post()
-   // @UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: ActivityScopeDto, @Res() res: Response) {
         try {
             return await this.activityScopeService.create(createDto);
@@ -82,7 +82,7 @@ export class ActivityScopeController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: ActivityScopeDto,
         @Param("id") id: number,
@@ -100,7 +100,7 @@ export class ActivityScopeController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {

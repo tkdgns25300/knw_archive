@@ -21,7 +21,7 @@ export class WorkItemController {
     workItemService: WorkItemService;
 
     @Post()
-   // @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: WorkItemDto, @Res() res: Response) {
         try {
             return await this.workItemService.create(createDto);
@@ -64,7 +64,7 @@ export class WorkItemController {
     }
 
     @Patch("/:id")
-  //  @UseBefore(checkAccessToken)
+   @UseBefore(checkAccessToken)
     public async update(
         @Body() updateDto: WorkItemDto,
         @Param("id") id: number,
@@ -82,7 +82,7 @@ export class WorkItemController {
     }
 
     @Delete("/:id")
-    //@UseBefore(checkAccessToken)
+    @UseBefore(checkAccessToken)
     public async delete( @Param("id") id: number,) {
 
         try {
