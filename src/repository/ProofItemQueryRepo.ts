@@ -77,7 +77,8 @@ export class ProofItemQueryRepo extends BaseQueryRepo {
                 "chronology_item.id",
                 "chronology_item.content",
                 "chronology_item.period",
-            ]).getOne();
+            ])
+            .getManyAndCount();
         const entity_ = convertStringToEntity("ProofItem");
         return new entity_().getEntity("ProofItem", result);
     }
