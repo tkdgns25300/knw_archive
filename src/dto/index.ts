@@ -1,4 +1,6 @@
 import {ActivityScopeDto} from "./ActivityScopeDto";
+import {ActivitySearchDto} from "./ActivitySearchDto"
+import {ActivitySearchDbDto} from "./ActivitySearchDbDto"
 import {AdminDto} from './AdminDto'
 import {AuthorDto} from "./AuthorDto";
 import {ChronologyItemDto} from "./ChronologyItemDto";
@@ -13,6 +15,8 @@ import {WorkItemDto} from "./WorkItemDto";
 
 export {
     ActivityScopeDto,
+    ActivitySearchDto,
+    ActivitySearchDbDto,
     AdminDto,
     AuthorDto,
     ChronologyItemDto,

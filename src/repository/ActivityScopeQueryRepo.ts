@@ -3,7 +3,7 @@ import {Service} from "typedi";
 
 import {ActivityScope} from "../entity";
 import {BaseQueryRepo} from "./BaseQueryRepo";
-import {ActivitySearchReq, PageReq} from "../api";
+import {ActivitySearchReq} from "../api";
 
 @Service()
 @EntityRepository(ActivityScope)
@@ -21,13 +21,17 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
         .where("ActivityScope.author_id IN (:author_id)", {author_id: param.getAuthor})
         .andWhere("ActivityScope.media IN (:media)", {media: param.getMedia})
         .andWhere("ActivityScope.relevance IN (:relevance)", {relevance: param.getRelevance})
+        .andWhere("ActivityScope.is_visible IN (:is_visible)", {is_visible: true})
         .select([
             "ActivityScope.id",
             "ActivityScope.period",
+            "ActivityScope.is_visible",
             "ActivityScope.updated_at",
             "ActivityScope.created_at",
+            "media.id",
             "media.name",
             "media.hex_color",
+            "relevance.id",
             "relevance.name",
             "author.name",
         ])
@@ -45,6 +49,7 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
           .select([
               "ActivityScope.id",
               "ActivityScope.period",
+              "ActivityScope.is_visible",
               "ActivityScope.updated_at",
               "ActivityScope.created_at",
               "media.name",
