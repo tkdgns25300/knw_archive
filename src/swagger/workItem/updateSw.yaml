@@ -36,6 +36,8 @@ paths:
                   type: string
                 img_src:
                   type: string
+                img_name:
+                  type: string
                 img_base64:
                   type: string
                 genre:

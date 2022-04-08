@@ -18,6 +18,13 @@ paths:
           description: pageNumber
           schema:
             type: integer
+        - name: ord
+          in: query
+          required: false
+          description: sort
+          schema:
+            type: string
+            enum: [ASC, DESC]
 
       responses:
         200:

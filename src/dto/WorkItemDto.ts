@@ -44,6 +44,11 @@ export class WorkItemDto {
   img_src: string|null;
 
   @IsOptional()
+  @IsString({ message: "문자열이 아닙니다." })
+  @MaxLength(50, { message: "최대 50자까지 입력됩니다." })
+  img_name: string|null;
+
+  @IsOptional()
   @IsString()
   img_base64: string|null;
 

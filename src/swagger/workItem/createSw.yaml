@@ -36,6 +36,8 @@ paths:
                   description: 상세 정보 버튼을 눌렀을 때 사용될 외부 사이트 연결 링크
                 img_base64:
                   type: string
+                img_name:
+                  type: string
                 genre:
                   type: string
                 is_visible:
@@ -83,6 +85,8 @@ paths:
                       img_src:
                         type: string
                         description: 첨부된 이미지가 있는 경우 해당 이미지의 주소
+                      img_name:
+                        type: string
                       genre:
                         type: string
                       is_visible:

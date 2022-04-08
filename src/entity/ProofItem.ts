@@ -20,6 +20,9 @@ export class ProofItem extends BaseEntity {
   @Column({type: "varchar", length: 100, comment: "파일 주소"})
   file_src: string;
 
+  @Column({type: "varchar", length: 50, comment: "파일 이름", default: " "})
+  file_name: string;
+
   @Column({type: "varchar", length: 200, comment: "상세정보 링크"})
   reference: string;
 

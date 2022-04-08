@@ -18,6 +18,11 @@ export class ProofItemDto {
   file_src: string;
 
   @IsOptional()
+  @IsString({ message: "문자열이 아닙니다." })
+  @MaxLength(50, { message: "최대 50자까지 입력됩니다." })
+  file_name: string;
+
+  @IsOptional()
   @IsString()
   file_base64: string|null;
 

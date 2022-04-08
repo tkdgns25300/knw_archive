@@ -28,6 +28,9 @@ export class WorkItem extends BaseEntity {
   @Column({type: "varchar", length: 200, comment: "첨부된 이미지가 있는 경우 해당 이미지의 주소"})
   img_src: string;
 
+  @Column({type: "varchar", length: 40, comment: "업로드 된 이미지 이름", default: ""})
+  img_name: string;
+
   @Column({type: "varchar", length: 10, comment: "장르"})
   genre: string;
 

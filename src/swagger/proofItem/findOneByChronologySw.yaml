@@ -45,6 +45,8 @@ paths:
                             type: string
                       file_src:
                         type: string
+                      file_name:
+                        type: string
                       reference:
                         type: string
                         description: 상세정보 링크

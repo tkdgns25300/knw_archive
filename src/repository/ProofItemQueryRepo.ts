@@ -19,6 +19,7 @@ export class ProofItemQueryRepo extends BaseQueryRepo {
         .select([
           "ProofItem.id",
           "ProofItem.file_src",
+          "ProofItem.file_name",
           "ProofItem.reference",
           "ProofItem.content",
           "ProofItem.is_visible",
@@ -45,6 +46,7 @@ export class ProofItemQueryRepo extends BaseQueryRepo {
             .select([
                 "ProofItem.id",
                 "ProofItem.file_src",
+                "ProofItem.file_name",
                 "ProofItem.reference",
                 "ProofItem.content",
                 "ProofItem.is_visible",
@@ -69,6 +71,7 @@ export class ProofItemQueryRepo extends BaseQueryRepo {
             .select([
                 "ProofItem.id",
                 "ProofItem.file_src",
+                "ProofItem.file_name",
                 "ProofItem.reference",
                 "ProofItem.content",
                 "ProofItem.is_visible",

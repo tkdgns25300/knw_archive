@@ -21,6 +21,8 @@ paths:
                   description: 작가 연보
                 file_base64:
                   type: string
+                file_name:
+                  type: string
                 reference:
                   type: string
                 content:
@@ -52,6 +54,8 @@ paths:
                       chronology_id:
                         type: number
                       file_src:
+                        type: string
+                      file_name:
                         type: string
                       reference:
                         type: string
