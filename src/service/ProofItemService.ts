@@ -45,7 +45,8 @@ export class ProofItemService {
       const fileArr = paramObj.file_base64.split('&');
       let uploadedFile = '';
       for (const file of fileArr) {
-        uploadedFile += '&' + await uploadFile(file);
+        uploadedFile += '&';
+        uploadedFile += await uploadFile(file);
       }
       paramObj.file_src = uploadedFile.slice(1);
     }
