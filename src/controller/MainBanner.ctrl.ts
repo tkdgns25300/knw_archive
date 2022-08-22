@@ -13,7 +13,6 @@ import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
 import {logger} from "../util/logger";
 import {MainBannerDto} from "../dto";
-import { uploadImage } from "../util/imgUpload";
 
 @Service()
 @JsonController("/banner")
@@ -25,9 +24,6 @@ export class MainBannerController {
    @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: MainBannerDto, @Res() res: Response) {
         try {
-            if (createDto.img_base64) {
-                await uploadImage(createDto.img_base64)
-            }
             return await this.mainBannerService.create(createDto);
         } catch (err) {
             if (err instanceof QueryFailedError) {

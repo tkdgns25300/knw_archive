@@ -13,7 +13,6 @@ import {checkAccessToken} from "../middlewares/AuthMiddleware";
 import {QueryFailedError} from "typeorm";
 import {logger} from "../util/logger";
 import {ProofItemDto} from "../dto";
-import { uploadFile } from "../util/fileUpload";
 
 @Service()
 @JsonController("/proof")
@@ -25,9 +24,6 @@ export class ProofItemController {
    @UseBefore(checkAccessToken)
     public async create(@Body({ options: { limit: "20mb" } }) createDto: ProofItemDto, @Res() res: Response) {
         try {
-            if (createDto.file_base64) {
-                await uploadFile(createDto.file_base64)
-            }
             return await this.proofItemService.create(createDto);
         } catch (err) {
             if (err instanceof QueryFailedError) {
