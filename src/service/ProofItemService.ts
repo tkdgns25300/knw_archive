@@ -112,7 +112,12 @@ export class ProofItemService {
   ) {
 
     const candidate = await manager.findOne(ProofItem, id);
-    if (candidate.file_src) await removeFile(candidate.file_src);
+    if (candidate.file_src) {
+      const fileArr = candidate.file_src.split('&');
+        for (const file of fileArr) {
+          await removeFile(file);
+        }
+    }
     await manager.delete(ProofItem, id);
 
     return new PageResObj({}, "ProofItem 삭제에 성공했습니다.");
