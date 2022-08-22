@@ -15,9 +15,9 @@ export class WorkItemDto {
   title: string;
 
   @IsOptional()
-  @IsDate()
-  @Type(() => Date)
-  published_from: Date;
+  // @IsDate()
+  // @Type(() => Date)
+  published_from: string;
 
   @IsOptional()
   // @IsDate()
