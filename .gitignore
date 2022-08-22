@@ -1,4 +1,6 @@
-.env.dev
+.env
+.env.beta
+.env.prod
 .idea
 node_modules
 logs
