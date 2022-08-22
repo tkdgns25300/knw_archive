@@ -14,7 +14,6 @@ export class ProofItemDto {
 
   @IsOptional()
   @IsString({ message: "문자열이 아닙니다." })
-  @MaxLength(100, { message: "최대 100자까지 입력됩니다." })
   file_src: string;
 
   @IsOptional()

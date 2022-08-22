@@ -17,7 +17,7 @@ export class ProofItem extends BaseEntity {
   @JoinColumn({ name: "chronology_id" })
   chronology_id: number;
 
-  @Column({type: "varchar", length: 100, comment: "파일 주소"})
+  @Column({type: "text", comment: "파일 주소"})
   file_src: string;
 
   @Column({type: "varchar", length: 50, comment: "파일 이름", default: " "})

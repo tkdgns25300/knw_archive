@@ -40,9 +40,14 @@ export class ProofItemService {
   }
 
   async create(paramObj: ProofItemDto): Promise<PageResObj<ProofItem | {}>> {
-
+    // 최대 10개까지 파일 업로드 : 각 파일은 '&' 로 구분
     if (paramObj.file_base64) {
-      paramObj.file_src = await uploadFile(paramObj.file_base64)
+      const fileArr = paramObj.file_base64.split('&');
+      let uploadedFile = '';
+      for (const file of fileArr) {
+        uploadedFile += await uploadFile(file);
+      }
+      paramObj.file_src = uploadedFile;
     }
     paramObj.created_at = new Date()
     const createResult = await this.proofItemQueryRepo.create(
