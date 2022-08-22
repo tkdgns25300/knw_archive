@@ -38,6 +38,8 @@ export class WorkItemService {
       paramObj.img_src = await uploadImage(paramObj.img_base64)
     }
     paramObj.created_at = new Date()
+    console.log(paramObj)
+    console.log(paramObj.published_to)
     if (paramObj.published_to === undefined) {
       paramObj.published_to = null;
     }
