@@ -45,9 +45,9 @@ export class ProofItemService {
       const fileArr = paramObj.file_base64.split('&');
       let uploadedFile = '';
       for (const file of fileArr) {
-        uploadedFile += await uploadFile(file);
+        uploadedFile += '&' + await uploadFile(file);
       }
-      paramObj.file_src = uploadedFile;
+      paramObj.file_src = uploadedFile.slice(1);
     }
     paramObj.created_at = new Date()
     const createResult = await this.proofItemQueryRepo.create(
@@ -70,11 +70,24 @@ export class ProofItemService {
     );
 
     if (paramObj.file_base64) {
-      if (candidate.file_src) await removeFile(candidate.file_src);
-      paramObj.file_src =  await uploadFile(paramObj.file_base64)
-    } else if(paramObj.file_src !== candidate.file_src) {
-      await removeFile(candidate.file_src);
-    }
+      // 기존 파일들 삭제
+      if (candidate.file_src) {
+        const fileArr = candidate.file_src.split('&');
+        for (const file of fileArr) {
+          await removeFile(file);
+        }
+      }
+      // 신규 파일들 등록
+      const fileArr = paramObj.file_base64.split('&');
+      let uploadedFile = '';
+      for (const file of fileArr) {
+        uploadedFile += '&' + await uploadFile(file);
+      }
+      paramObj.file_src = uploadedFile.slice(1);
+    } 
+    // else if(paramObj.file_src !== candidate.file_src) {
+    //   await removeFile(candidate.file_src);
+    // }
     delete paramObj.file_base64
 
     paramObj.updated_at = new Date();
