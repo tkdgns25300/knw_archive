@@ -4,7 +4,7 @@ import { InjectRepository } from "typeorm-typedi-extensions";
 import { ActivityScopeQueryRepo } from "../repository/ActivityScopeQueryRepo";
 import {ActivityScope} from "../entity";
 import {ActivityScopeDto, ActivitySearchDbDto, ActivitySearchDto} from "../dto";
-import {ActivitySearchReq, PageResList, PageResObj} from "../api";
+import {ActivitySearchReq, List, PageResList, PageResObj} from "../api";
 
 @Service()
 export class ActivityScopeService {
@@ -14,7 +14,7 @@ export class ActivityScopeService {
   ) {}
 
 
-  async search(param: ActivitySearchReq): Promise<PageResList<ActivitySearchDto>> {
+  async search(param: ActivitySearchReq): Promise<List<ActivitySearchDto>> {
     const result = await this.activityScopeQueryRepo.search(param);
     let authors = []
     //@ts-ignore
@@ -58,9 +58,7 @@ export class ActivityScopeService {
     })
 
 
-    return new PageResList<ActivitySearchDto>(
-        result[1],
-        param.limit,
+    return new List<ActivitySearchDto>(
         items.map((el: ActivitySearchDto) => {
           return el;
         }),

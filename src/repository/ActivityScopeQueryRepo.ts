@@ -36,9 +36,11 @@ export class ActivityScopeQueryRepo extends BaseQueryRepo {
             "author.name",
         ])
 
-       return result.skip(param.getOffset())
-        .take(param.getLimit())
-        .getManyAndCount();
+        // limit, offset 불필요
+        // return result.skip(param.getOffset())
+        //   .take(param.getLimit())
+        //   .getManyAndCount();
+        return result.getManyAndCount();
   }
 
   async findAll(param: ActivitySearchReq) {
