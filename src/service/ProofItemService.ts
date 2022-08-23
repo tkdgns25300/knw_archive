@@ -69,8 +69,8 @@ export class ProofItemService {
       "id",
       id
     );
-
-    if (paramObj.file_base64) {
+    console.log(paramObj)
+    if (paramObj.file_src) {
       // 기존 파일들 삭제
       if (candidate.file_src) {
         const fileArr = candidate.file_src.split('&');
@@ -79,7 +79,8 @@ export class ProofItemService {
         }
       }
       // 신규 파일들 등록
-      const fileArr = paramObj.file_base64.split('&');
+      const fileArr = paramObj.file_src.split('&');
+      console.log(fileArr)
       let uploadedFile = '';
       for (const file of fileArr) {
         uploadedFile += '&' + await uploadFile(file);
