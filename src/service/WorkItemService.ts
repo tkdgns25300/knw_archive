@@ -66,6 +66,12 @@ export class WorkItemService {
       id
     );
 
+    // 밮표 시작일이 월까지만 있을 경우 hh:mm:ss 를 11:11:11.111000 로 변경 => 하드코딩 방식(추후 다른방법 도입 요망)
+    if (String(paramObj.published_from).length <= 7) {
+      const fixedDate = paramObj.published_from.slice(0, 7) + '-01T11:11:11.111Z'
+      paramObj.published_from = fixedDate;
+    }
+
     if (paramObj.img_base64) {
       if (candidate.img_src) await removeImage(candidate.img_src);
       paramObj.img_src =  await uploadImage(paramObj.img_base64)
