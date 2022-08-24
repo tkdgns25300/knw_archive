@@ -74,16 +74,18 @@ export class ProofItemService {
       if (candidate.file_src) {
         const fileArr = candidate.file_src.split('&');
         for (const file of fileArr) {
-          await removeFile(file);
+          if (!paramObj.file_src.split('&').includes(file)) {
+            await removeFile(file);
+          }
         }
       }
       // 신규 파일들 등록
-      const fileArr = paramObj.file_src.split('&');
-      let uploadedFile = '';
+      const fileArr = paramObj.file_src.split('&').filter(file => file.length > 20);
+      let uploadedFile = paramObj.file_src.split('&').filter(file => file.length <= 20).join('&');
       for (const file of fileArr) {
         uploadedFile += '&' + await uploadFile(file);
       }
-      paramObj.file_src = uploadedFile.slice(1);
+      uploadFile[0] = '&' ? paramObj.file_src = uploadedFile.slice(1) : paramObj.file_src = uploadedFile
     } 
     // else if(paramObj.file_src !== candidate.file_src) {
     //   await removeFile(candidate.file_src);
