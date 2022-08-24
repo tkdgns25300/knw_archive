@@ -85,7 +85,7 @@ export class ProofItemService {
       for (const file of fileArr) {
         uploadedFile += '&' + await uploadFile(file);
       }
-      uploadFile[0] = '&' ? paramObj.file_src = uploadedFile.slice(1) : paramObj.file_src = uploadedFile
+      uploadedFile[0] === '&' ? paramObj.file_src = uploadedFile.slice(1) : paramObj.file_src = uploadedFile
     } 
     // else if(paramObj.file_src !== candidate.file_src) {
     //   await removeFile(candidate.file_src);
