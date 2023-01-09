@@ -31,7 +31,7 @@ export const uploadImage = async (base64image) => {
 export const removeImage = async (fileName) => {
 
     try {
-        await rimraf("./uploads/images/" + fileName, function () {
+        await rimraf("./uploads/files/" + fileName, function () {
         });
         return {message: "Image was deleted"}
     } catch (e) {
