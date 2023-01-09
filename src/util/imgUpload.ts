@@ -46,7 +46,7 @@ function storeBuffer(buffer, filename) {
     // Write buffer
     readStream.end(buffer);
 
-    const writeStream = fs.createWriteStream(path.join('uploads/images/' + filename));
+    const writeStream = fs.createWriteStream(path.join('uploads/files/' + filename));
 
     readStream.pipe(writeStream);
 }
